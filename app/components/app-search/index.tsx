@@ -6,6 +6,7 @@ const AppSearch = () => {
     <FormControl id="app-search">
       <Input
         type="search"
+        variant="soft"
         placeholder="Search conversation or contact"
         startDecorator={<Search />}
         aria-label="Search conversation or contact"

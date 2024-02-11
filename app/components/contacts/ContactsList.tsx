@@ -7,12 +7,13 @@ import {
   ListItemDecorator,
   Typography
 } from "@mui/joy";
+import Link from "next/link";
 
 const ContactsList = ({}) => {
   return (
     <List sx={{ "--ListItemDecorator-size": "56px" }}>
       <ListItem sx={{ px: 0 }}>
-        <ListItemButton sx={{ py: 2 }}>
+        <ListItemButton component={Link} href="/chat-room-1" sx={{ py: 2 }}>
           <ListItemDecorator>
             <Avatar />
           </ListItemDecorator>
@@ -25,7 +26,7 @@ const ContactsList = ({}) => {
         </ListItemButton>
       </ListItem>
       <ListItem sx={{ px: 0 }}>
-        <ListItemButton sx={{ py: 2 }}>
+        <ListItemButton component={Link} href="/chat-room-2" sx={{ py: 2 }}>
           <ListItemDecorator>
             <Avatar />
           </ListItemDecorator>

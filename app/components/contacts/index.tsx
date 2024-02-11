@@ -1,11 +1,23 @@
-import { Box, Grid, Sheet, Stack } from "@mui/joy";
+import { Sheet, Stack } from "@mui/joy";
 import ContactsList from "./ContactsList";
 import AppSearch from "../app-search";
 
 const Contacts = () => {
   return (
-    <Sheet sx={{ width: "min(100%, 300px)" }}>
-      <Stack id="contacts" component="section" spacing={2} padding={2}>
+    <Sheet
+      id="contacts"
+      component="section"
+      sx={{
+        width: "100%",
+        height: "100vh",
+        position: "absolute",
+
+        "@media(min-width: 768px)": {
+          width: "400px"
+        }
+      }}
+    >
+      <Stack spacing={2} padding={2}>
         <AppSearch />
         <ContactsList />
       </Stack>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { CssBaseline, CssVarsProvider } from "@mui/joy";
+import { CssBaseline, CssVarsProvider, Stack } from "@mui/joy";
 import { Inter } from "next/font/google";
+import Contacts from "./components/contacts";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,7 +21,15 @@ export default function RootLayout({
       <body className={inter.className}>
         <CssVarsProvider>
           <CssBaseline />
-          {children}
+          <Stack
+            height="100vh"
+            direction="row"
+            component="main"
+            id="main-content"
+          >
+            <Contacts />
+            {children}
+          </Stack>
         </CssVarsProvider>
       </body>
     </html>

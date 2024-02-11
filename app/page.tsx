@@ -1,12 +1,18 @@
-import { Stack } from "@mui/joy";
-import ChatRoom from "./components/chat-room";
-import Contacts from "./components/contacts";
+import { Stack, Typography } from "@mui/joy";
 
 export default function Home() {
   return (
-    <Stack component="main" id="main-content" height="100vh" direction="row">
-      <Contacts />
-      <ChatRoom />
+    <Stack
+      height="100vh"
+      width="100%"
+      bgcolor="whitesmoke"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Typography level="title-lg">Welcome to Next Chat</Typography>
+      <Typography level="body-sm">
+        Click on any of the contacts to start a conversation
+      </Typography>
     </Stack>
   );
 }

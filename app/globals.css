@@ -100,6 +100,32 @@ a {
   text-decoration: none;
 }
 
+.slide_in {
+  animation: slide_in 300ms ease-in-out forwards;
+}
+
+.slide_left {
+  animation: slide_left 300ms ease-in-out forwards;
+}
+
+@keyframes slide_in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide_left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
