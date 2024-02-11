@@ -1,11 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { ArrowBack } from "@mui/icons-material";
 import { Button, useTheme } from "@mui/joy";
+import { useCallback, useEffect, useRef } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef } from "react";
 
 const BackButton = () => {
   const chatRoomRef = useRef<HTMLDivElement | null>(null);
