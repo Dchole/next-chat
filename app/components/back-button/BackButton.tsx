@@ -1,29 +1,34 @@
 "use client";
 
 import { ArrowBack } from "@mui/icons-material";
-import { Button } from "@mui/joy";
+import { Button, useTheme } from "@mui/joy";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
 const BackButton = () => {
   const chatRoomRef = useRef<HTMLDivElement | null>(null);
   const { push } = useRouter();
+  const { breakpoints } = useTheme();
+  const isDesktop = useMediaQuery(breakpoints.up("md"));
 
   const handleBack = useCallback(
     (event?: React.MouseEvent<HTMLAnchorElement>) => {
       event?.preventDefault();
 
-      if (chatRoomRef.current) {
+      if (!isDesktop && chatRoomRef.current) {
         chatRoomRef.current.classList.add("slide_left");
         chatRoomRef.current.getAnimations().forEach(animation => {
           animation.onfinish = () => {
             push("/");
           };
         });
+      } else {
+        push("/");
       }
     },
-    []
+    [isDesktop]
   );
 
   useEffect(() => {
@@ -45,11 +50,17 @@ const BackButton = () => {
   return (
     <Button
       href="/"
-      component={Link}
-      variant="plain"
+      aria-label="back to contacts"
       color="neutral"
-      sx={{ px: 1 }}
+      variant="plain"
+      component={Link}
       onClick={handleBack}
+      sx={({ breakpoints }) => ({
+        px: 1,
+        [breakpoints.up("md")]: {
+          display: "none"
+        }
+      })}
     >
       <ArrowBack />
     </Button>

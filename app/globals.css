@@ -126,6 +126,16 @@ a {
   }
 }
 
+@media screen and (min-width: 900px) {
+  .slide_in {
+    animation: none;
+  }
+
+  .slide_left {
+    animation: none;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

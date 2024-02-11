@@ -14,7 +14,11 @@ const Chat = () => {
         position: "absolute",
         height: "100vh",
         width: "100%",
-        zIndex: 100
+        zIndex: 100,
+
+        "@media(min-width: 900px)": {
+          position: "relative"
+        }
       }}
     >
       <ChatHeader />

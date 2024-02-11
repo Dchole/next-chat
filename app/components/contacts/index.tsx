@@ -12,8 +12,9 @@ const Contacts = () => {
         height: "100vh",
         position: "absolute",
 
-        "@media(min-width: 768px)": {
-          width: "400px"
+        "@media(min-width: 900px)": {
+          width: "400px",
+          position: "relative"
         }
       }}
     >
