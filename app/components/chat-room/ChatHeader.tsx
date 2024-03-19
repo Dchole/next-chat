@@ -8,8 +8,15 @@ import {
   Typography
 } from "@mui/joy";
 import BackButton from "../back-button";
+import { getContact } from "@/app/database/queries/contacts";
 
-const ChatHeader = () => {
+interface IProps {
+  contactId: string;
+}
+
+const ChatHeader = async ({ contactId }: IProps) => {
+  const contact = await getContact(contactId);
+
   return (
     <Sheet>
       <Stack
@@ -20,8 +27,8 @@ const ChatHeader = () => {
       >
         <Stack direction="row" alignItems="center" spacing={1}>
           <BackButton />
-          <Avatar size="lg" />
-          <Typography level="title-sm">John Doe</Typography>
+          <Avatar size="lg" src={contact?.avatar} alt="" />
+          <Typography level="title-sm">{contact?.name}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="flex-end" spacing={1} py={1}>
           <ButtonGroup variant="soft">

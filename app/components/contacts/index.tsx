@@ -1,8 +1,12 @@
 import { Sheet, Stack } from "@mui/joy";
 import ContactsList from "./ContactsList";
 import AppSearch from "../app-search";
+import { getSession } from "@/app/lib/session";
 
 const Contacts = () => {
+  const session = getSession();
+  console.log(session);
+
   return (
     <Sheet
       id="contacts"

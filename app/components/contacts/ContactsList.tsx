@@ -1,3 +1,5 @@
+import { queryContacts } from "@/app/database/queries/contacts";
+import { Contact } from "@/app/database/schema/Contact";
 import {
   Avatar,
   List,
@@ -9,35 +11,30 @@ import {
 } from "@mui/joy";
 import Link from "next/link";
 
-const ContactsList = ({}) => {
+const ContactsList = async ({}) => {
+  const contacts = await queryContacts({});
+
   return (
     <List sx={{ "--ListItemDecorator-size": "56px" }}>
-      <ListItem sx={{ px: 0 }}>
-        <ListItemButton component={Link} href="/chat-room-1" sx={{ py: 2 }}>
-          <ListItemDecorator>
-            <Avatar />
-          </ListItemDecorator>
-          <ListItemContent>
-            <Typography level="title-sm">John Doe</Typography>
-            <Typography level="body-sm" noWrap>
-              I&apos;ll be in your neighborhood doing errands this Tuesday.
-            </Typography>
-          </ListItemContent>
-        </ListItemButton>
-      </ListItem>
-      <ListItem sx={{ px: 0 }}>
-        <ListItemButton component={Link} href="/chat-room-2" sx={{ py: 2 }}>
-          <ListItemDecorator>
-            <Avatar />
-          </ListItemDecorator>
-          <ListItemContent>
-            <Typography level="title-sm">John Doe</Typography>
-            <Typography level="body-sm" noWrap>
-              I&apos;ll be in your neighborhood doing errands this Tuesday.
-            </Typography>
-          </ListItemContent>
-        </ListItemButton>
-      </ListItem>
+      {contacts.map(contact => (
+        <ListItem key={contact._id} sx={{ px: 0 }}>
+          <ListItemButton
+            component={Link}
+            href={`/${contact._id}`}
+            sx={{ py: 2 }}
+          >
+            <ListItemDecorator>
+              <Avatar src={contact.avatar} alt="" />
+            </ListItemDecorator>
+            <ListItemContent>
+              <Typography level="title-sm">{contact.name}</Typography>
+              <Typography level="body-sm" noWrap>
+                {contact.message}
+              </Typography>
+            </ListItemContent>
+          </ListItemButton>
+        </ListItem>
+      ))}
     </List>
   );
 };

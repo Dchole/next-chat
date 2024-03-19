@@ -3,7 +3,9 @@ import ChatHeader from "../components/chat-room/ChatHeader";
 import ChatMessages from "../components/chat-room/ChatMessages";
 import ChatInputs from "../components/chat-room/ChatInputs";
 
-const Chat = () => {
+const Chat = ({ params }: { params: { chat: string } }) => {
+  const { chat } = params;
+
   return (
     <Stack
       component="section"
@@ -21,7 +23,7 @@ const Chat = () => {
         }
       }}
     >
-      <ChatHeader />
+      <ChatHeader contactId={chat} />
       <ChatMessages />
       <ChatInputs />
     </Stack>

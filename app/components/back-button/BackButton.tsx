@@ -55,12 +55,7 @@ const BackButton = () => {
       variant="plain"
       component={Link}
       onClick={handleBack}
-      sx={({ breakpoints }) => ({
-        px: 1,
-        [breakpoints.up("md")]: {
-          display: "none"
-        }
-      })}
+      sx={{ px: 1 }}
     >
       <ArrowBack />
     </Button>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { initDB } from "./database/init";
 import { CssBaseline, CssVarsProvider, Stack } from "@mui/joy";
 import { Inter } from "next/font/google";
 import Contacts from "./components/contacts";
@@ -16,6 +17,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  initDB();
+
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -27,7 +30,6 @@ export default function RootLayout({
             component="main"
             id="main-content"
           >
-            <Contacts />
             {children}
           </Stack>
         </CssVarsProvider>

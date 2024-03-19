@@ -1,6 +1,10 @@
 import { Stack, Typography } from "@mui/joy";
+import { getSession } from "./lib/session";
+import LoginButton from "./components/login/LoginButton";
 
 export default function Home() {
+  const session = getSession();
+
   return (
     <Stack
       height="100vh"
@@ -10,9 +14,13 @@ export default function Home() {
       justifyContent="center"
     >
       <Typography level="title-lg">Welcome to Next Chat</Typography>
-      <Typography level="body-sm">
-        Click on any of the contacts to start a conversation
-      </Typography>
+      {session ? (
+        <Typography level="body-md">
+          Click on a contact to start a conversation
+        </Typography>
+      ) : (
+        <LoginButton />
+      )}
     </Stack>
   );
 }
