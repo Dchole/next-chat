@@ -26,9 +26,9 @@ const Contacts = () => {
     >
       <Stack spacing={2} padding={2}>
         <AppSearch />
-        {/* <Suspense fallback={<div>loading...</div>}> */}
-        <ContactsList />
-        {/* </Suspense> */}
+        <Suspense fallback={<div>loading...</div>}>
+          <ContactsList />
+        </Suspense>
       </Stack>
     </Sheet>
   );
