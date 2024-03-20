@@ -17,9 +17,9 @@ export async function GET(request: Request) {
       .oauth2("v2")
       .userinfo.get({ auth: oauth2Client });
 
-    setSession({ uid: data.id });
-
     const existingUser = await Contact.findOne({ google_id: data.id });
+
+    let sessionUid = existingUser?._id;
 
     if (!existingUser) {
       const newContact = new Contact({
@@ -29,7 +29,11 @@ export async function GET(request: Request) {
       });
 
       await newContact.save();
+
+      sessionUid = newContact._id;
     }
+
+    setSession({ uid: sessionUid });
   }
 
   return Response.redirect(new URL("/", request.url));

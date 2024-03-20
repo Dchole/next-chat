@@ -24,8 +24,8 @@ const Chat = ({ params }: { params: { chat: string } }) => {
       }}
     >
       <ChatHeader contactId={chat} />
-      <ChatMessages />
-      <ChatInputs />
+      <ChatMessages contactId={chat} />
+      <ChatInputs contactId={chat} />
     </Stack>
   );
 };

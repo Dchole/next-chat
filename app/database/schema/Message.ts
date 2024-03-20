@@ -7,7 +7,7 @@ import {
   type ObjectId
 } from "mongoose";
 
-interface IMessage extends Document {
+export interface IMessage extends Document {
   message: string;
   sender: string;
   receiver: string;

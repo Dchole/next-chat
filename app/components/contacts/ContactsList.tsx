@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 
 const ContactsList = async ({}) => {
-  const contacts = await queryContacts({});
+  const contacts = await queryContacts();
 
   return (
     <List sx={{ "--ListItemDecorator-size": "56px" }}>

@@ -3,11 +3,11 @@ import type { IAuthSession } from "@/app/helpers/types";
 import { Contact, type IContact } from "../schema/Contact";
 import { getSession } from "@/app/lib/session";
 
-export const queryContacts = async (query: FilterQuery<IContact>) => {
+export const queryContacts = async (query?: FilterQuery<IContact>) => {
   const session = getSession<IAuthSession>();
 
   return Contact.find({ ...query })
-    .where({ google_id: { $ne: session?.uid } })
+    .where({ _id: { $ne: session?.uid } })
     .sort({ date: -1 })
     .select("-__v -google_id");
 };

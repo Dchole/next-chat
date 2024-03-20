@@ -1,10 +1,40 @@
+import { Message } from "@/app/database/schema/Message";
+import { IAuthSession } from "@/app/helpers/types";
+import { getSession } from "@/app/lib/session";
 import { AttachFile, EmojiEmotionsOutlined, Mic } from "@mui/icons-material";
-import { Button, FormControl, Input, Sheet, Stack } from "@mui/joy";
+import { Button, FormControl, IconButton, Input, Sheet, Stack } from "@mui/joy";
+import SendButton from "./SendButton";
+import TextInput from "./TextInput";
 
-const ChatInputs = () => {
+interface IProps {
+  contactId: string;
+}
+
+const ChatInputs = ({ contactId }: IProps) => {
+  const sendMessage = async (formData: FormData) => {
+    "use server";
+    const session = getSession<IAuthSession>();
+    const message = formData.get("message");
+
+    await Message.create({
+      sender: session?.uid || "", // TODO: This should never be undefined, I'll handle it later
+      receiver: contactId,
+      message
+    });
+
+    formData.set("message", "");
+  };
+
   return (
     <Sheet sx={{ width: "100%" }}>
-      <Stack component="form" id="chat-inputs" direction="row" px={1} py={1.25}>
+      <Stack
+        component="form"
+        action={sendMessage}
+        id="chat-inputs"
+        direction="row"
+        px={1}
+        py={1.25}
+      >
         <Button variant="plain" color="neutral" sx={{ px: 1.2 }}>
           <EmojiEmotionsOutlined />
         </Button>
@@ -12,7 +42,7 @@ const ChatInputs = () => {
           <AttachFile />
         </Button>
         <FormControl id="chat-message" sx={{ flex: 1, mx: 1, width: "50%" }}>
-          <Input type="text" variant="soft" placeholder="Type a message" />
+          <TextInput />
         </FormControl>
         <Button variant="plain" color="neutral" sx={{ px: 1.2 }}>
           <Mic />

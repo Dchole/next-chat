@@ -5,7 +5,8 @@ import { getSession } from "@/app/lib/session";
 
 const Contacts = () => {
   const session = getSession();
-  console.log(session);
+
+  if (!session) return null;
 
   return (
     <Sheet
