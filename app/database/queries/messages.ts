@@ -16,3 +16,7 @@ export const queryMessages = async (
       { sender: session?.uid, receiver: contactId }
     ]);
 };
+
+export const viewMessages = async (messages: string[]) => {
+  return Message.updateMany().where("_id").in(messages).set({ read: true });
+};

@@ -2,6 +2,7 @@ import { Sheet, Stack } from "@mui/joy";
 import ContactsList from "./ContactsList";
 import AppSearch from "../app-search";
 import { getSession } from "@/app/lib/session";
+import { Suspense } from "react";
 
 const Contacts = () => {
   const session = getSession();
@@ -25,7 +26,9 @@ const Contacts = () => {
     >
       <Stack spacing={2} padding={2}>
         <AppSearch />
+        {/* <Suspense fallback={<div>loading...</div>}> */}
         <ContactsList />
+        {/* </Suspense> */}
       </Stack>
     </Sheet>
   );

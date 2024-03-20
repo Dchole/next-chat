@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Stack } from "@mui/joy";
 import ChatHeader from "../components/chat-room/ChatHeader";
 import ChatMessages from "../components/chat-room/ChatMessages";
@@ -24,7 +25,9 @@ const Chat = ({ params }: { params: { chat: string } }) => {
       }}
     >
       <ChatHeader contactId={chat} />
-      <ChatMessages contactId={chat} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ChatMessages contactId={chat} />
+      </Suspense>
       <ChatInputs contactId={chat} />
     </Stack>
   );

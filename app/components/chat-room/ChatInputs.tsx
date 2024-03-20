@@ -2,8 +2,7 @@ import { Message } from "@/app/database/schema/Message";
 import { IAuthSession } from "@/app/helpers/types";
 import { getSession } from "@/app/lib/session";
 import { AttachFile, EmojiEmotionsOutlined, Mic } from "@mui/icons-material";
-import { Button, FormControl, IconButton, Input, Sheet, Stack } from "@mui/joy";
-import SendButton from "./SendButton";
+import { Button, FormControl, Sheet, Stack } from "@mui/joy";
 import TextInput from "./TextInput";
 
 interface IProps {
