@@ -45,6 +45,16 @@ const LiveMessages = ({ children }: IProps) => {
     });
   }, []);
 
+  useEffect(() => {
+    const messagesSection = document.querySelector<HTMLDivElement>("#messages");
+    const messagesListEl = messagesSection?.children.item(1);
+    const lastMessage = messagesListEl?.lastElementChild as HTMLDivElement;
+
+    lastMessage?.scrollIntoView({
+      behavior: messages.length ? "smooth" : "auto"
+    });
+  }, [messages]);
+
   return <>{children(messages)}</>;
 };
 

@@ -6,7 +6,6 @@ import { useFormStatus } from "react-dom";
 
 function SendButton() {
   const { pending, ...rest } = useFormStatus();
-  console.log(rest.data?.get("message"));
 
   return (
     <IconButton

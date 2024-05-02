@@ -11,7 +11,7 @@ export const queryMessages = cache(
     const ws = connectToWS();
 
     Message.on("created", data => {
-      ws.send(JSON.stringify(data));
+      ws.send(JSON.stringify({ uid: session?.uid, message: data }));
     });
 
     return Message.find({ ...query })

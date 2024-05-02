@@ -8,11 +8,16 @@ export function createWSServer() {
 
     ws.on("message", data => {
       console.log("received: %s", data);
-      //   ws.send("back to front");
       wss.clients.forEach(function each(client) {
-        console.log(client.readyState, WebSocket.OPEN);
         if (client.readyState === WebSocket.OPEN) {
-          client.send(data);
+          try {
+            const { uid, message } = JSON.parse(data.toString());
+            if ([message.sender, message.receiver].includes(uid)) {
+              client.send(JSON.stringify(message));
+            }
+          } catch (error) {
+            client.send(data);
+          }
         }
       });
     });
