@@ -28,7 +28,7 @@ const BackButton = () => {
         push("/");
       }
     },
-    [isDesktop]
+    [isDesktop, push]
   );
 
   useEffect(() => {

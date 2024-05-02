@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { initDB } from "./database/init";
-import { CssBaseline, CssVarsProvider, Stack } from "@mui/joy";
 import { Inter } from "next/font/google";
-import Contacts from "./components/contacts";
+import { CssBaseline, CssVarsProvider, Stack } from "@mui/joy";
+import { initDB } from "./database/init";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
