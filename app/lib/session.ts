@@ -26,3 +26,7 @@ export function setSession(data: string | Record<string, unknown>) {
     path: "*"
   });
 }
+
+export function deleteSession() {
+  cookies().delete("session");
+}
